@@ -1,5 +1,6 @@
 package com.vladyslav.sweater.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,21 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
-public class User {
+@Table(name="message")
+public class Message {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private String message;
+	@Column(name="message")
+	private String text;
 	
 	private String tag;
 	
-	public User() {}
+	public Message() {}
 
-	public User(String message, String tag) {
-		this.message = message;
+	public Message(String text, String tag) {
+		this.text = text;
 		this.tag = tag;
 	}
 
@@ -33,12 +35,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getText() {
+		return text;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public String getTag() {
@@ -51,8 +53,6 @@ public class User {
 
 	
 	
-	
-
 	
 	
 

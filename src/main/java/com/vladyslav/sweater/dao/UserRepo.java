@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.vladyslav.sweater.entity.User;
+import com.vladyslav.sweater.entity.Message;
 
-public interface UserRepo extends CrudRepository<User, Integer>{
+public interface UserRepo extends CrudRepository<Message, Integer>{
 	
-	List<User> findByTag(String tag);
+	List<Message> findByTag(String tag);
 
 }

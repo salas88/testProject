@@ -18,7 +18,7 @@
 		
 			<h2 class="mb-4">Add new Message</h2>
 			<form method="post" th:action="save">
-				<input type="text" name="message" placeholder="Message"
+				<input type="text" name="text" placeholder="Message"
 				class="form-control col-6 mb-4">
 				<input type="text" name="tag" placeholder="Tag"
 				class="form-control col-6 mb-4">
@@ -41,12 +41,12 @@
 					<thead>
 						<tr>
 							<th>Id</th>
-							<th>Message</th>
+							<th>Text</th>
 							<th>Tag</th>
 						</tr>
 					</thead>
 					
-						<tr th:each="tempUser : ${users}">
+						<tr th:each="tempUser : ${messages}">
 							<td th:text="${tempUser.id}"></td>
 							<td th:text="${tempUser.message}"></td>
 							<td th:text="${tempUser.tag}"></td>

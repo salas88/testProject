@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vladyslav.sweater.dao.UserRepo;
-import com.vladyslav.sweater.entity.User;
+import com.vladyslav.sweater.entity.Message;
 
 
 @Controller
@@ -33,7 +33,7 @@ public class DemoController {
 	@GetMapping("/main")
 	public String list(Model theModel) {
 		
-		Iterable<User> users = userRepo.findAll();
+		Iterable<Message> users = userRepo.findAll();
 		
 		theModel.addAttribute("users", users);
 		
@@ -42,15 +42,15 @@ public class DemoController {
 	}	
 	
 	@PostMapping("save")
-	public String add(@RequestParam String message, @RequestParam String tag, Model theModel ) {
+	public String add(@RequestParam String text, @RequestParam String tag, Model theModel ) {
 		
-		User user= new User(message, tag);
+		Message message = new Message(text, tag);
 		
-		userRepo.save(user);
+		userRepo.save(message);
 		
-		Iterable<User> users = userRepo.findAll();
+		Iterable<Message> messages = userRepo.findAll();
 		
-		theModel.addAttribute("users", users);
+		theModel.addAttribute("users", messages);
 	
 		
 		return "index";
@@ -59,15 +59,15 @@ public class DemoController {
 	@PostMapping("filter")
 	public String filter(@RequestParam String filter, Model theModel) {
 		
-		Iterable<User> users;
+		Iterable<Message> messages;
 		
 		if(filter.isEmpty()) {
-			users = userRepo.findAll();
+			messages = userRepo.findAll();
 		}else {
-			users = userRepo.findByTag(filter);
+			messages = userRepo.findByTag(filter);
 		}
 		
-		theModel.addAttribute("users", users);
+		theModel.addAttribute("messages", messages);
 		
 		return "index";
 	}
