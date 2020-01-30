@@ -1,11 +1,5 @@
 package com.vladyslav.sweater.controller;
 
-
-
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.vladyslav.sweater.dao.UserRepo;
+import com.vladyslav.sweater.dao.MessageRepo;
 import com.vladyslav.sweater.entity.Message;
 
 
@@ -22,7 +16,7 @@ import com.vladyslav.sweater.entity.Message;
 public class DemoController {
 	
 	@Autowired
-	private UserRepo userRepo;
+	private MessageRepo messageRepo;
 	
 	@GetMapping()
 	public String main(Model theModel) {
@@ -33,9 +27,9 @@ public class DemoController {
 	@GetMapping("/main")
 	public String list(Model theModel) {
 		
-		Iterable<Message> users = userRepo.findAll();
+		Iterable<Message> messages = messageRepo.findAll();
 		
-		theModel.addAttribute("users", users);
+		theModel.addAttribute("messages", messages);
 		
 		return "index";
 	
@@ -46,11 +40,11 @@ public class DemoController {
 		
 		Message message = new Message(text, tag);
 		
-		userRepo.save(message);
+		messageRepo.save(message);
 		
-		Iterable<Message> messages = userRepo.findAll();
+		Iterable<Message> messages = messageRepo.findAll();
 		
-		theModel.addAttribute("users", messages);
+		theModel.addAttribute("messages", messages);
 	
 		
 		return "index";
@@ -62,9 +56,9 @@ public class DemoController {
 		Iterable<Message> messages;
 		
 		if(filter.isEmpty()) {
-			messages = userRepo.findAll();
+			messages = messageRepo.findAll();
 		}else {
-			messages = userRepo.findByTag(filter);
+			messages = messageRepo.findByTag(filter);
 		}
 		
 		theModel.addAttribute("messages", messages);

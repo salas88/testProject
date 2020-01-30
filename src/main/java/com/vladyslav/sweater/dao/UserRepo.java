@@ -1,13 +1,12 @@
 package com.vladyslav.sweater.dao;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.springframework.data.repository.CrudRepository;
+import com.vladyslav.sweater.entity.User;
 
-import com.vladyslav.sweater.entity.Message;
 
-public interface UserRepo extends CrudRepository<Message, Integer>{
+public interface UserRepo extends JpaRepository<User,Long> {
 	
-	List<Message> findByTag(String tag);
+	User findByUsername(String username);
 
 }
