@@ -20,11 +20,23 @@ public class Message {
 	
 	private String tag;
 	
+	private User author;
+	
+	
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+
 	public Message() {}
 
-	public Message(String text, String tag) {
+	public Message(String text, String tag, User user) {
 		this.text = text;
 		this.tag = tag;
+		this.author=user;
 	}
 
 	public int getId() {

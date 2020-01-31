@@ -1,15 +1,16 @@
 package com.vladyslav.sweater.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vladyslav.sweater.dao.MessageRepo;
 import com.vladyslav.sweater.entity.Message;
+import com.vladyslav.sweater.entity.User;
 
 
 @Controller
@@ -36,9 +37,11 @@ public class DemoController {
 	}	
 	
 	@PostMapping("save")
-	public String add(@RequestParam String text, @RequestParam String tag, Model theModel ) {
+	public String add(@AuthenticationPrincipal User user, @RequestParam String text, 
+					                                      @RequestParam String tag, 
+					                                      Model theModel ) {
 		
-		Message message = new Message(text, tag);
+		Message message = new Message(text, tag, user);
 		
 		messageRepo.save(message);
 		
