@@ -26,11 +26,18 @@ public class DemoController {
 	}
 	
 	@GetMapping("/main")
-	public String list(Model theModel) {
+	public String list(@RequestParam(required = false, defaultValue= "" ) String filter, Model theModel) {
 		
 		Iterable<Message> messages = messageRepo.findAll();
 		
+		if(filter.isEmpty()) {
+			messages = messageRepo.findAll();
+		}else {
+			messages = messageRepo.findByTag(filter);
+		}
+		
 		theModel.addAttribute("messages", messages);
+		theModel.addAttribute("filter", filter);
 		
 		return "index";
 	
@@ -52,25 +59,6 @@ public class DemoController {
 		
 		return "index";
 	}
-	
-	@PostMapping("filter")
-	public String filter(@RequestParam String filter, Model theModel) {
-		
-		Iterable<Message> messages;
-		
-		if(filter.isEmpty()) {
-			messages = messageRepo.findAll();
-		}else {
-			messages = messageRepo.findByTag(filter);
-		}
-		
-		theModel.addAttribute("messages", messages);
-		
-		return "index";
-	}
-	
-	
-	
-	
+
 
 }

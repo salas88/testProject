@@ -21,9 +21,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Table(name="user")
 public class User implements UserDetails{
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 	private String username;
 	private String password;
 	private boolean active;
@@ -33,11 +34,13 @@ public class User implements UserDetails{
 	@Enumerated(EnumType.STRING)
 	private Set<Role> roles;
 
-	public int getId() {
+	
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

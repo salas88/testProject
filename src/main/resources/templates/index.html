@@ -28,8 +28,8 @@
 		</div>
 		
 		<div class="container mt-4 col-8">
-			<form method="post" th:action="filter">
-				<input type="text" name="filter" placeholder="Filter" class="form-control col-6 mb-4">
+			<form method="get" th:action="/main">
+				<input type="text" name="filter" value="${filter}" placeholder="Filter" class="form-control col-6 mb-4">
 				<button type="submit" class="btn btn-primary">Filter</button>
 			</form>
 		</div>

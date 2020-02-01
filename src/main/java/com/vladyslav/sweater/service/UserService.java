@@ -10,12 +10,13 @@ import com.vladyslav.sweater.dao.UserRepo;
 
 @Service
 public class UserService implements UserDetailsService{
+	
 	@Autowired
 	private  UserRepo userRepo;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
+		
 		return userRepo.findByUsername(username);
 	}
 
