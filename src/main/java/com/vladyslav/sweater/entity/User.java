@@ -27,16 +27,6 @@ public class User implements UserDetails{
 	private String username;
 	private String password;
 	private boolean active;
-	
-	
-	
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
 
 	@ElementCollection(targetClass=Role.class, fetch=FetchType.EAGER)
 	@CollectionTable(name = "user_role", joinColumns= @JoinColumn(name = "user_id"))
@@ -105,10 +95,12 @@ public class User implements UserDetails{
 		return isActive();
 	}
 
-	
+	public boolean isActive() {
+		return active;
+	}
 
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	
-	
-	
-
 }
